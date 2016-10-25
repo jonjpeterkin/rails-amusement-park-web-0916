@@ -1,10 +1,13 @@
 class SessionsController < ApplicationController
+	skip_before_action :require_admin
+	skip_before_action :require_login
+
 
 	def new
 	end
 
 	def create
-		user = User.find_by(username: session_params(:username))
+		user = User.find_by(name: session_params(:name))
 		session[:user_id] = user.id 
 		redirect_to user_path(user)
 	end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	skip_before_action :require_admin 
+	skip_before_action :require_login, only: [:new, :create]
 
 	def new
 		@user = User.new
@@ -6,6 +8,7 @@ class UsersController < ApplicationController
 
 	def create
 		user = User.create(user_params(:name, :email, :height, :happiness, :nausea, :tickets, :admin, :password))
+		byebug
 		redirect_to user_path(user)
 	end
 

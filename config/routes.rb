@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 	resources :attractions 
 	resources :sessions, only: [:create, :destroy]
 
-
 	get '/', to: 'welcome#index', as: 'homepage'
-	get '/login', to: 'sessions#new', as: 'login' 
+	get '/signin', to: 'sessions#new', as: 'login' 
 	
 
 end
